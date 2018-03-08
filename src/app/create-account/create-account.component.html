@@ -1,0 +1,9 @@
+<div>
+  <h1> Create an Account </h1>
+  <form name="userform" method="post" #formCtrl="ngForm">
+    <input type="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" name="email" required/>
+    <input type="username" class="form-control" placeholder="Username" [(ngModel)]="user.username" name="username" required/>
+    <input type="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" name="password" required/>
+    <button type="buton" (click)="createAccount()" [disabled]="formCtrl.form.invalid">>Submit</button>
+  </form>
+</div>

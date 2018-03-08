@@ -1,0 +1,57 @@
+<div>
+  <navbar></navbar>
+  <h1> {{group.name}}</h1>
+
+  <div>
+    <p>Members:</p>
+    <div *ngFor="let member of membersArray" class="search-result" >
+      {{member.username}}{{member.picture}}
+    </div>
+  </div>
+  <div>
+    <p>Invited:</p>
+    <div *ngFor="let member of invitedArray" class="search-result" >
+      {{member.username}}{{member.picture}}
+    </div>
+  </div>
+  <input #memberSearch type="text" (keyup)="search(memberSearch.value)" class="form-control" placeholder="Members"/>
+  <br>
+  <span *ngFor="let name of userList" (click)="addMember(name)">
+  +  {{name}}
+  </span>
+  <span> {{addMemberError}} </span>
+
+
+  <div>
+    <h4> Upcoming events </h4>
+    <div *ngFor="let event of eventsArray"
+         (click)="relocateEvent('event', event.court, event.event)" class="search-result" >
+      {{event.sender}} has created {{event.event}} at {{event.court}} on {{event.date}}.
+    </div>
+  </div>
+
+  <div>
+    <button (click)="relocate('createeventgroup', group.name)"> Start a event </button>
+  </div>
+
+  <div>
+    <div *ngFor="let message of messagesArray" class="search-result" >
+       {{message.poster}}: {{message.message}}
+       <span (click)="revealForm(message)"> Reply </span>
+       <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
+         <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
+         <button (click)="postComment(comment, message)"> Submit </button>
+       </form>
+       <tree-node-group
+        [group] = group
+        [message]= message
+        [currentUser]= currentUser
+        [messagesArray]= "messagesArray">
+      </tree-node-group>
+    </div>
+    <form name="messageForm" method="post" #formCtrl="ngForm">
+      <textarea placeholder="Post a message?" #comment name ="postComment" required></textarea>
+      <button (click)="postComment(comment)"> Submit </button>
+    </form>
+  </div>
+</div>

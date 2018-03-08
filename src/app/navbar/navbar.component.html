@@ -1,0 +1,11 @@
+<div>
+  <ul>
+    <li (click)="relocate('account', currentUser.username)"> Hi {{currentUser.username}} </li>
+    <li (click)="relocate('messagecenter', currentUser.username)"> Messages </li>
+    <li (click)="relocateSingle('courtsearch')"> Court Search </li>
+    <li (click)="relocateSingle('createcourt')"> Add Court </li>
+    <li (click)="relocateSingle('creategroup')"> Create Group </li>
+    <li (click)="relocateSingle('createevent')"> Create Event </li>
+    <li (click)="relocateSingle('')">Logout</li>
+  </ul>
+</div>

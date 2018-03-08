@@ -1,0 +1,37 @@
+<navbar></navbar>
+<div>
+  <h1>Add Court</h1>
+  <agm-map [latitude]="latitude" [longitude]="longitude">
+    <agm-marker [latitude]="latitude" [longitude]="longitude">
+      <agm-info-window>
+        <p> {{court.name}} </p>
+        <p> {{court.location.address}} </p>
+      </agm-info-window>
+    </agm-marker>
+
+  </agm-map>
+  <form name="userform" method="post" #formCtrl="ngForm">
+    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="court.name" name="name" required/>
+    <br>
+    <input (focus)="removeMessage" (blur)="getLatandLng(court.location.address)" type="text" class="form-control" value="court.location.address" placeholder="Address" [(ngModel)]="court.location.address" name="address" required/>
+    <p *ngFor="let address of addressArray" (click)="saveAddress(address)">
+      {{address.formatted_address}}
+    </p>
+    <span *ngIf="addressInputted"> This address has been saved.</span>
+    <br>
+    <span> {{addCourtError}} </span>
+    <br>
+    <input type="text" class="form-control" placeholder="Cost" [(ngModel)]="court.cost" name="cost" required/>
+    <br>
+    <input type="radio" class="form-control" [(ngModel)]="court.location.inside" value="outside" name="outside" required/> Outside
+    <input type="radio" class="form-control" [(ngModel)]="court.location.inside" value="inside" name="inside" required/> Inside
+    <br>
+    <input type="radio" class="form-control" [(ngModel)]="court.activity" value="high" name="high" required/> High
+    <input type="radio" class="form-control" [(ngModel)]="court.activity" value="medium" name="medium" required/> Medium
+    <input type="radio" class="form-control" [(ngModel)]="court.activity" value="low" name="low" required/> Low
+    <br>
+    <input type="textarea" class="form-control" placeholder="Description" [(ngModel)]="court.description" name="description" required/>
+    <br>
+    <button type="buton" (click)="onSubmit()" [disabled]="formCtrl.form.invalid">Submit</button>
+  </form>
+</div>

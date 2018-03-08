@@ -1,0 +1,67 @@
+<navbar></navbar>
+<div>
+  <h1> {{event.name}}</h1>
+  <agm-map *ngIf="dataLoaded" [latitude]="event.location.coords.lat" [longitude]="event.location.coords.lng">
+    <agm-marker [latitude]="event.location.coords.lat" [longitude]="event.location.coords.lng">
+      <agm-info-window>
+        <p (click)="relocate('court', event.court)"> {{event.court}} </p>
+        <p (click)="relocate('court', event.court)"> {{event.location.address}} </p>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+
+  <p>{{event.date}}</p>
+  <p (click)="relocate('court', event.court)">{{event.court}}</p>
+  <p>{{event.location.address}}</p>
+  <p>{{event.description}}</p>
+  <h2>Rsvp</h2>
+  <div *ngIf="event.private">
+    Private Event
+  </div>
+  <form *ngIf="userIsInvited" method="post" #formCtrl="ngForm">
+    <select class="form-control" (change)="updateUserStatus($event.target.value)" name="attending">
+      <option *ngFor="let status of statusArray;" [selected]="status == currentUserStatus">{{status}}</option>
+    </select>
+  </form>
+  <div *ngIf="event.group" (click)="relocate('group', event.group)">
+    Group: {{event.group}}
+  </div>
+  <div *ngFor="let person of going">
+    Going: {{person}}
+  </div>
+  <div *ngFor="let person of maybe">
+    Maybe: {{person}}
+  </div>
+  <div *ngFor="let person of invited">
+    Not Responded: {{person}}
+  </div>
+  <div *ngFor="let person of notGoing">
+    Not Attending: {{person}}
+  </div>
+  <span> Add Members </span>
+  <input #memberSearch type="text" (keyup)="fillUsersObject(); searchUsers(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Name" name="invited"/>
+  <br>
+  <span *ngFor="let name of userList" (click)="addMembers(name)">
+    + {{name}}
+  </span>
+  <div>
+    <div *ngFor="let message of messagesArray" class="search-result" >
+       {{message.poster}}: {{message.message}}
+       <span (click)="revealForm(message)"> Reply </span>
+       <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
+         <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
+         <button (click)="postComment(comment, message)"> Submit </button>
+       </form>
+       <tree-node-event
+        [event] = event
+        [message]= message
+        [currentUser]= currentUser
+        [messagesArray]= "messagesArray">
+      </tree-node-event>
+    </div>
+    <form name="messageForm" method="post" #formCtrl="ngForm">
+      <textarea placeholder="Post a message?" #comment name ="postComment" required></textarea>
+      <button (click)="postComment(comment)"> Submit </button>
+    </form>
+  </div>
+</div>

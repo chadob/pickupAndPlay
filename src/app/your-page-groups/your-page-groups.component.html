@@ -1,0 +1,13 @@
+<div id="groups-component">
+  <h4>Your groups</h4>
+  <div>
+    <div *ngFor="let invite of invitesArray"
+         (click)="joinGroup(invite.name)" class="search-result" >
+      {{invite.sender}} has invited you to {{invite.name}}.
+    </div>
+    <div *ngFor="let myGroup of groupsArray"
+         (click)="relocate('group', myGroup.name)" class="search-result" >
+      {{myGroup.name}}
+    </div>
+  </div>
+</div>

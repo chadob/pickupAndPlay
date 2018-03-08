@@ -1,0 +1,37 @@
+1. Sign in page
+2. Create Account Page
+2. Nav Bar
+2. Your page:
+  A. events signed up for
+  B. Groups
+  C. Favorite Courts
+  D. Messages
+3. Court Search
+4. Map Page
+  A. Map
+  B. Court List
+5. Group Page
+  A. Message board
+  B. Events
+  C. Members List
+6. Event Page
+  A. Message board
+  B. Details
+  C. RSVPS
+7. Create Event Page
+8. Create Group Page
+
+
+1. Write all components
+2. Edit html's: make data bootstrap
+3. Write code to link to firebase
+  -Send data about your account, events, groups to firebase
+  -Get data about those back
+4. Create firebase database
+5. Get google maps api access
+6. write code to get a map in
+7. Write code to be able to search for address
+8. Write code to add markers for courts.
+9. Add a frendslist
+10. Add a way to dm
+11. Show friend's activity

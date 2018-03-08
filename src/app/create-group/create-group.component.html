@@ -1,0 +1,18 @@
+<navbar></navbar>
+<div>
+  <h1>Create Group</h1>
+  <form name="groupform" method="post" #formCtrl="ngForm">
+    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="group.name" name="name" required/>
+    <br>
+    <span> Add Members </span>
+    <input #memberSearch type="text" (keyup)="search(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Members" name="memberSearch"/>
+    <br>
+    <span *ngFor="let name of userList" (click)="addMembers(name)">
+      + {{name}}
+    </span>
+    <br>
+    <input type="textarea" class="form-control" placeholder="Description" [(ngModel)]="group.description" name="description" required/>
+    <br>
+    <button type="buton" (click)="onSubmit()" [disabled]="formCtrl.form.invalid">Create</button>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<navbar></navbar>
+
+<agm-map [latitude]="latitude" [longitude]="longitude">
+  <agm-marker *ngFor="let court of courtsArray" [latitude]="court.coords.lat" [longitude]="court.coords.lng">
+    <agm-info-window (click)="relocate('court', court.name)">
+      <p (click)="relocate('court', court.name)"> {{court.name}} </p>
+      <p (click)="relocate('court', court.name)"> {{court.address}} </p>
+    </agm-info-window>
+  </agm-marker>
+  <agm-marker [latitude]="userLat" [longitude]="userLng">
+    <agm-info-window (click)="relocate('court', court.name)">
+      <p> Your Address </p>
+      <p> {{addressInput}} </p>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+<h2> Search for a court </h2>
+<input #courtSearch type="text" (keyup)="search(courtSearch.value)" class="form-control" placeholder="Search for court by name"/>
+<br>
+<span *ngFor="let name of courtList" (click)="relocate('court', name)">
+{{name}}
+</span>
+<span> {{addCourtError}} </span>
+
+<br>
+
+<input (focus)="removeMessage" type="text" class="form-control" value="addressInput" placeholder="Or find court near address" [(ngModel)]="addressInput" name="address" required/>
+<button (click)="getLatandLng(addressInput)"> Search</button>
+<p *ngFor="let address of addressArray" (click)="findAddress(address)">
+  {{address.formatted_address}}
+</p>

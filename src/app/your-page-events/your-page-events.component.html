@@ -1,0 +1,13 @@
+<div id="events-component">
+  <h4>Upcoming events</h4>
+  <div>
+    <div *ngFor="let invite of invitesArray">
+      {{invite.sender}} has invited you to {{invite.name}} on {{invite.date}}.
+      <span *ngFor="let status of statusArray" (click)="respondToEvent(invite.court, invite.name, status, invite.date)"> {{status}} </span>
+    </div>
+    <div *ngFor="let myEvent of eventsArray"
+         (click)="relocateEvent('event', myEvent.court, myEvent.name)" class="search-result" >
+      {{myEvent.name}}
+    </div>
+  </div>
+</div>

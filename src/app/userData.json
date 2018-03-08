@@ -1,0 +1,187 @@
+{
+  "messages": {
+    "events": {
+
+    },
+    "groups": {
+
+    },
+    "courts": {
+
+    }
+   },
+  "userData": {
+    "TdyXg3tWakQXl74UgNtA6RFPmSC3": {
+      "id": "1",
+      "email": "chadnobrowne@gmail.com",
+      "username": "bballwizard",
+      "password": "dontreach",
+      "name": "Chad O-Browne",
+      "favoriteCourts": {
+        "Greenlake Outside": {"id": "court1", "name": "Greenlake Outside"},
+        "Greenlake Inside": {"id": "court4", "name": "Greenlake Inside"}
+      },
+      "myEvents": {
+        "Ballin": {"id": "event1", "court": "Greenlake Outside", "name": "Ballin"},
+        "Tuesday Ballas": {"id": "event2", "court": "Greenlake Outside", "name": "Tuesday Ballas"}
+      },
+      "myGroups": {
+        "Hawks": {"id": "group1", "name": "Hawks"},
+        "Falcons": {"id": "group2", "name": "Falcons"}
+      },
+      "messages": {
+        "Alfred": {"sender": "Alfred", "content": "Hi", "date": "1/4/2017"},
+        "Shaq": {"sender": "Shaq", "content": "Your song is inaccurate.", "date": "1/5/2017"}
+      }
+    },
+    "user2": {
+    }
+  },
+
+  "courts": {
+    "Greenlake Outside": {
+      "id": "court1",
+      "name": "Greenlake Outside",
+      "address": "1914 se 144th st.",
+      "events": {
+        "Ballin": {
+          "id": "event1",
+          "name": "Ballin"
+        },
+        "Tuesday Ballas": {
+          "id": "event2",
+          "name": "Tuesday Ballas"
+        }
+      }
+    },
+    "Greenlake Inside": {
+      "id": "court4",
+      "name": "Greenlake Inside",
+      "address": "1914 se 144th st.",
+      "events": {
+        "Test": {
+          "id": "event3",
+          "name": "Test"
+        },
+        "Loser game": {
+          "id": "event4",
+          "name": "Loser game"
+        }
+      }
+    }
+  },
+  "events": {
+    "courts": {
+      "Greenlake Outside": {
+        "events": {
+          "Ballin": {
+            "id": "event1",
+            "name": "Ballin",
+            "date": "12/29/18",
+            "address": "1914 se 144th st.",
+            "going": {
+              "Chad O-Browne": {
+                "id": "user1",
+                "name": "Chad O-Browne"
+              }
+            },
+            "invited": {
+              "bob": {
+                "id": "user4",
+                "name": "bob"
+              }
+            },
+            "notGoing": {
+              "AI": {
+                "id": "user3",
+                "name": "AI"
+              }
+            },
+            "messages": {
+              "message1": {
+                "sender": "Kobe Bryant",
+                "content": "You suck",
+                "date": "12/18/2018",
+                "replies": {
+                  "message1 1": {
+                    "sender": "Shaq",
+                    "content": "LOL",
+                    "date": "12/18/2018",
+                    "replies": {
+                    }
+                  }
+                }
+              },
+              "message2": {
+                "sender": "MJ",
+                "content": "Nice Try Guy",
+                "date": "12/19/2018",
+                "replies": {
+                }
+              }
+            }
+          },
+          "Tuesday Ballas": {
+            "id": "event2",
+            "name": "Tuesday Ballas"
+          }
+        }
+      },
+      "Greenlake Inside": {
+        "events": {
+          "Test": {
+            "id": "event3",
+            "name": "Test"
+          },
+          "Loser game": {
+            "id": "event4",
+            "name": "Loser game"
+          }
+        }
+      }
+    }
+  },
+  "groups": {
+    "Hawks": {
+      "id": "group1",
+      "name": "Hawks",
+      "members": {
+        "Chad O-Browne": {"id": "user1", "name": "Chad O-Browne"},
+        "AI": {"id": "user3", "name": "AI"}
+      },
+      "messages": {
+        "bob": {
+          "sender": "bob",
+          "content": "Hi",
+          "replies": {
+            "sender": "frank",
+            "content": "Howdy",
+            "replies": {
+            }
+          }
+        }
+      }
+    },
+
+    "Falcons": {
+      "id": "group2",
+      "name": "Falcons",
+      "members": {
+        "Chad O-Browne": {"id": "user1", "name": "Chad O-Browne"},
+        "AI": {"id": "user3", "name": "AI"}
+      },
+      "messages": {
+        "bob": {
+          "sender": "bob",
+          "content": "Hi",
+          "replies": {
+            "sender": "frank",
+            "content": "Howdy",
+            "replies": {
+            }
+          }
+        }
+      }
+    }
+  }
+}

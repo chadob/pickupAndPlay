@@ -1,0 +1,47 @@
+<div>
+  <navbar></navbar>
+  <h1> {{court.name}}</h1>
+  <!--Google Maps -->
+  <agm-map [latitude]="latitude" [longitude]="longitude">
+    <agm-marker [latitude]="latitude" [longitude]="longitude">
+      <agm-info-window>
+        <p> {{court.name}} </p>
+        <p> {{court.location.address}} </p>
+      </agm-info-window>
+    </agm-marker>
+
+  </agm-map>
+  <p *ngIf="courtIsFavorited" (click)="toggleFavoriteStatus()"> Remove Court from favorites? </p>
+  <p *ngIf="!courtIsFavorited" (click)="toggleFavoriteStatus()"> Add Court to favorites? </p>
+  <p>Address: {{court.location.address}}</p>
+  <p>Cost: ${{court.cost}}</p>
+  <p>Location: {{court.location.inside}}</p>
+  <p>Activity Level: {{court.activity}}</p>
+  <p>Description: {{court.description}}</p>
+  <p (click)="relocate('createeventcourt', court.name)"> Create Event </p>
+  <h2> Events at {{court.name}} </h2>
+  <div *ngFor="let event of eventsArray">
+    {{event.name}} Date: {{event.date}}
+  </div>
+  <h2> Message Board </h2>
+  <div>
+    <div *ngFor="let message of messagesArray" class="search-result" >
+       {{message.poster}}: {{message.message}}
+       <span (click)="revealForm(message)"> Reply </span>
+       <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
+         <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
+         <button (click)="postComment(comment, message)"> Submit </button>
+       </form>
+       <tree-node-court
+        [court] = court
+        [message]= message
+        [currentUser]= currentUser
+        [messagesArray]= "messagesArray">
+      </tree-node-court>
+    </div>
+    <form name="messageForm" method="post" #formCtrl="ngForm">
+      <textarea placeholder="Post a message?" #comment name ="postComment" required></textarea>
+      <button (click)="postComment(comment)"> Submit </button>
+    </form>
+  </div>
+</div>

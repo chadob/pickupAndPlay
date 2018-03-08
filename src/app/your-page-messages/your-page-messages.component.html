@@ -1,0 +1,8 @@
+<div id="your-page-messages-component">
+  <h4>Messages</h4>
+  <div>
+    <div *ngFor="let message of messagesArray; let i=index">
+      <a *ngIf="i<3" (click)="relocate('messagecenter', currentUser.username)"> {{message.sender}}: {{message.content}} </a>
+    </div>
+  </div>
+</div>
