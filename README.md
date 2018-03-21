@@ -1,27 +1,5 @@
 # PickUpAndPlay
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
+Pick up and play is an app which integrates bootstrap, angular, the google maps api, and firebase in order to provide users with an avenue for finding courts to play basketball at and the the ability to create/manage events at those locations. Users can add new courts/groups/events to the database and see all events/groups that they have been invited to.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+I found that as I moved away from college, it became more and more difficult to find a court where others were playing at, and so I wanted to create an app that would show this. Using the google maps api, users are able to place markers on the map that show available courts. Any user can then create an event and invite other users to it.
