@@ -23,6 +23,7 @@ export class CourtSearchComponent implements OnInit {
   longitude = -122.349358;
   userLat;
   userLng;
+  courtString = "court";
   constructor(private route:ActivatedRoute, private router:Router, private goToPageClass: GoToPage, private getService: GetService) { }
 
   ngOnInit() {

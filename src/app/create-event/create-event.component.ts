@@ -16,7 +16,10 @@ export class CreateEventComponent implements OnInit {
     court: '',
     location: {
       address: '',
-      coords: ''
+      coords: {
+        lat: '',
+        lng: ''
+      }
     },
     date: '',
     private: '',

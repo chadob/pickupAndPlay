@@ -8,7 +8,7 @@
     </agm-info-window>
   </agm-marker>
   <agm-marker [latitude]="userLat" [longitude]="userLng">
-    <agm-info-window (click)="relocate('court', court.name)">
+    <agm-info-window>
       <p> Your Address </p>
       <p> {{addressInput}} </p>
     </agm-info-window>
@@ -30,7 +30,7 @@
   <br>
 
   <div class="input-group mx-auto">
-    <input (focus)="removeMessage" type="text" style="width: 400px" class="d-inline-block mx-auto form-control" value="addressInput" placeholder="Or find court near address" [(ngModel)]="addressInput" name="address" required/>
+    <input type="text" style="width: 400px" class="d-inline-block mx-auto form-control" value="addressInput" placeholder="Or find court near address" [(ngModel)]="addressInput" name="address" required/>
     <div class="input-group-append">
       <button class="btn btn-primary" (click)="getLatandLng(addressInput)"> Search</button>
     </div>

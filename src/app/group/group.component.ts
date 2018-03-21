@@ -127,7 +127,7 @@ export class GroupComponent implements OnInit {
     }
     console.log(this.userList);
   }
-  postComment(formMessage, repliedTo) {
+  postReply(formMessage, repliedTo) {
     var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
     if (repliedTo) {
       commentToPost.ancestor = repliedTo.key;
@@ -143,6 +143,14 @@ export class GroupComponent implements OnInit {
       } else {
         window.location.reload();
       }
+    });
+  }
+  postComment(formMessage) {
+    var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
+    this.pushToComment = this.getService.pushData('messages/groups/' + this.group.name, commentToPost).subscribe(value => {
+      console.log(value);
+      this.pushToComment.unsubscribe();
+      window.location.reload();
     });
   }
   fillArray(array, category) {

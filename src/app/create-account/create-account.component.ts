@@ -32,7 +32,7 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  createAccount(email, username, password) {
+  createAccount() {
     this.authService.signUp(this.user.email, this.user.username, this.user.password)
     .then((res) => {
       this.getService.getAllData('userData/' + res.uid + '/username').subscribe(value => {

@@ -51,7 +51,7 @@
         <div class="ml-2 input-group" *ngIf="message.replyClicked" name="messageForm">
           <input placeholder="Post a reply?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
           <div class="input-group-append">
-            <button class="btn btn-primary" (click)="postComment(comment, message)"> Submit </button>
+            <button class="btn btn-primary" (click)="postReply(comment, message)"> Submit </button>
           </div>
         </div>
         <tree-node-court

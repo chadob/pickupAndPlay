@@ -77,7 +77,7 @@ export class EventComponent implements OnInit {
       });
     }
   }
-  postComment(formMessage, repliedTo) {
+  postReply(formMessage, repliedTo) {
     var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
     if (repliedTo) {
       commentToPost.ancestor = repliedTo.key;
@@ -93,6 +93,13 @@ export class EventComponent implements OnInit {
       } else {
         window.location.reload();
       }
+    });
+  }
+  postComment(formMessage) {
+    var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
+    this.pushToComment = this.getService.pushData('messages/events/' + this.event.name, commentToPost).subscribe(value => {
+      this.pushToComment.unsubscribe();
+      window.location.reload();
     });
   }
   updateUserStatus(attending) {

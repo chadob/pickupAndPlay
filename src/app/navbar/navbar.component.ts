@@ -8,6 +8,7 @@ import { GoToPage } from '../go-to-page/go-to-page.service';
 })
 export class NavbarComponent implements OnInit {
   currentUser;
+  isNavbarCollapsed = false;
   constructor(private goToPageClass: GoToPage) { }
 
   ngOnInit() {

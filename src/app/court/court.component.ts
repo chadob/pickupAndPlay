@@ -115,7 +115,7 @@ export class CourtComponent implements OnInit {
       this.eventsArray.push({creator: event.creator, date: event.date, name: event.name});
     }
   }
-  postComment(formMessage, repliedTo) {
+  postReply(formMessage, repliedTo) {
     var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
     if (repliedTo) {
       commentToPost.ancestor = repliedTo.key;
@@ -131,6 +131,14 @@ export class CourtComponent implements OnInit {
       } else {
         window.location.reload();
       }
+    });
+  }
+  postComment(formMessage) {
+    var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
+    this.pushToComment = this.getService.pushData('messages/courts/' + this.court.name, commentToPost).subscribe(value => {
+      console.log(value);
+      this.pushToComment.unsubscribe();
+      window.location.reload();
     });
   }
   //checks if the current element is an even one of the array.
