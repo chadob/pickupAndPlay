@@ -3,8 +3,8 @@
 <agm-map [latitude]="latitude" [longitude]="longitude">
   <agm-marker *ngFor="let court of courtsArray" [latitude]="court.coords.lat" [longitude]="court.coords.lng">
     <agm-info-window (click)="relocate('court', court.name)">
-      <p (click)="relocate('court', court.name)"> {{court.name}} </p>
-      <p (click)="relocate('court', court.name)"> {{court.address}} </p>
+      <p style="cursor: pointer" class="text-center text-primary" (click)="relocate('court', court.name)"> {{court.name}} </p>
+      <p> {{court.address}} </p>
     </agm-info-window>
   </agm-marker>
   <agm-marker [latitude]="userLat" [longitude]="userLng">
@@ -14,18 +14,33 @@
     </agm-info-window>
   </agm-marker>
 </agm-map>
-<h2> Search for a court </h2>
-<input #courtSearch type="text" (keyup)="search(courtSearch.value)" class="form-control" placeholder="Search for court by name"/>
-<br>
-<span *ngFor="let name of courtList" (click)="relocate('court', name)">
-{{name}}
-</span>
-<span> {{addCourtError}} </span>
 
-<br>
+<h1 class="pt-2 pb-2 text-center"> Search for a Court </h1>
 
-<input (focus)="removeMessage" type="text" class="form-control" value="addressInput" placeholder="Or find court near address" [(ngModel)]="addressInput" name="address" required/>
-<button (click)="getLatandLng(addressInput)"> Search</button>
-<p *ngFor="let address of addressArray" (click)="findAddress(address)">
-  {{address.formatted_address}}
-</p>
+<div class="container py-5">
+  <input #courtSearch type="text" (keyup)="search(courtSearch.value)" style="width: 240px" class="mx-auto form-control" placeholder="Search for court by name"/>
+  <br>
+  <div class="pl-1 court-container mx-auto border">
+    <a *ngFor="let name of courtList; index as i" (click)="relocate('court', name)">
+      <p class="text-primary"> {{i + 1}}. {{name}} </p>
+    </a>
+  </div>
+  <span> {{addCourtError}} </span>
+
+  <br>
+
+  <div class="input-group mx-auto">
+    <input (focus)="removeMessage" type="text" style="width: 400px" class="d-inline-block mx-auto form-control" value="addressInput" placeholder="Or find court near address" [(ngModel)]="addressInput" name="address" required/>
+    <div class="input-group-append">
+      <button class="btn btn-primary" (click)="getLatandLng(addressInput)"> Search</button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="address-container mx-auto border">
+    <a *ngFor="let address of addressArray; index as i" (click)="findAddress(address)">
+      <p class="text-primary">{{i + 1}}.  {{address.formatted_address}}</p>
+    </a>
+  </div>
+</div>

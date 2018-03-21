@@ -1,67 +1,92 @@
 <navbar></navbar>
 <div>
-  <h1> {{event.name}}</h1>
   <agm-map *ngIf="dataLoaded" [latitude]="event.location.coords.lat" [longitude]="event.location.coords.lng">
     <agm-marker [latitude]="event.location.coords.lat" [longitude]="event.location.coords.lng">
       <agm-info-window>
-        <p (click)="relocate('court', event.court)"> {{event.court}} </p>
+        <p class="text-center text-primary" style="cursor: pointer" (click)="relocate('court', event.court)"> {{event.court}} </p>
         <p (click)="relocate('court', event.court)"> {{event.location.address}} </p>
       </agm-info-window>
     </agm-marker>
   </agm-map>
 
-  <p>{{event.date}}</p>
-  <p (click)="relocate('court', event.court)">{{event.court}}</p>
-  <p>{{event.location.address}}</p>
-  <p>{{event.description}}</p>
-  <h2>Rsvp</h2>
-  <div *ngIf="event.private">
-    Private Event
-  </div>
-  <form *ngIf="userIsInvited" method="post" #formCtrl="ngForm">
-    <select class="form-control" (change)="updateUserStatus($event.target.value)" name="attending">
-      <option *ngFor="let status of statusArray;" [selected]="status == currentUserStatus">{{status}}</option>
-    </select>
-  </form>
-  <div *ngIf="event.group" (click)="relocate('group', event.group)">
-    Group: {{event.group}}
-  </div>
-  <div *ngFor="let person of going">
-    Going: {{person}}
-  </div>
-  <div *ngFor="let person of maybe">
-    Maybe: {{person}}
-  </div>
-  <div *ngFor="let person of invited">
-    Not Responded: {{person}}
-  </div>
-  <div *ngFor="let person of notGoing">
-    Not Attending: {{person}}
-  </div>
-  <span> Add Members </span>
-  <input #memberSearch type="text" (keyup)="fillUsersObject(); searchUsers(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Name" name="invited"/>
-  <br>
-  <span *ngFor="let name of userList" (click)="addMembers(name)">
-    + {{name}}
-  </span>
-  <div>
-    <div *ngFor="let message of messagesArray" class="search-result" >
-       {{message.poster}}: {{message.message}}
-       <span (click)="revealForm(message)"> Reply </span>
-       <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
-         <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
-         <button (click)="postComment(comment, message)"> Submit </button>
-       </form>
-       <tree-node-event
-        [event] = event
-        [message]= message
-        [currentUser]= currentUser
-        [messagesArray]= "messagesArray">
-      </tree-node-event>
+  <div class="text-center container px-4 mw-25 py-5 rounded-bottom border-bottom">
+    <h1 class="pt-2 pb-2 text-center"> {{event.name}}</h1>
+    <div *ngIf="event.group" (click)="relocate('group', event.group)">
+      <h6 class="mb-0 mt-2">Group: </h6> <p>{{event.group}}</p>
     </div>
-    <form name="messageForm" method="post" #formCtrl="ngForm">
-      <textarea placeholder="Post a message?" #comment name ="postComment" required></textarea>
-      <button (click)="postComment(comment)"> Submit </button>
-    </form>
+    <h6 class="mb-0 mt-2">Date: </h6> <p>{{event.date}}</p>
+    <h6 class="mb-0 mt-2">Court: </h6> <p (click)="relocate('court', event.court)">{{event.court}}</p>
+    <h6 class="mb-0 mt-2">Address: </h6> <p>{{event.location.address}}</p>
+    <h6 class="mb-0 mt-2">Description: </h6> <p>{{event.description}}</p>
+  </div>
+
+  <div class="container">
+    <div class="rsvp mx-auto">
+      <h3 class="text-center">Rsvp</h3>
+      <div *ngIf="userIsInvited" class="mt-2">
+        <h6 class=""> Change Your Status: </h6>
+        <select class="form-control" (change)="updateUserStatus($event.target.value)" name="attending">
+          <option *ngFor="let status of statusArray;" [selected]="status == currentUserStatus">{{status}}</option>
+        </select>
+      </div>
+      <h5 class="mt-2"> Member's Status: </h5>
+      <div class="pl-2 mb-2">
+        <span class="font-weight-bold">Going: </span>
+        <br>
+        <span class="pl-2" *ngFor="let person of going">{{person}} </span>
+      </div>
+      <div class="pl-2 mb-2">
+        <span class="font-weight-bold"> Maybe: </span>
+        <br>
+        <span class="pl-2" *ngFor="let person of maybe">{{person}} </span>
+      </div>
+      <div class="pl-2 mb-2">
+        <span class="font-weight-bold"> Not Responded: </span>
+        <br>
+        <span class="pl-2" *ngFor="let person of invited"> {{person}} </span>
+      </div>
+      <div class="pl-2 mb-2">
+        <span class="font-weight-bold"> Not Attending: </span>
+        <br>
+        <span class="pl-2" *ngFor="let person of notGoing"> {{person}} </span>
+      </div>
+
+      <div class=" mt-2">
+        <h5 class=""> Add Members? </h5>
+        <input #memberSearch type="text" autocomplete="off" (keyup)="fillUsersObject(); searchUsers(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Name" name="invited"/>
+        <a *ngFor="let name of userList" (click)="addMembers(name)">
+          <p class="text-primary"> + {{name}} </p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container rounded-top border-top py-5">
+    <h3 class="pt-3 text-center"> Message Board </h3>
+    <div>
+      <div *ngFor="let message of messagesArray" class="ml-1" >
+         <span class="font-weight-bold">{{message.poster}}: </span>
+         <span>{{message.message}} </span>
+         <a class="text-primary" (click)="revealForm(message)"> Reply </a>
+         <div class="ml-2 input-group" *ngIf="message.replyClicked" name="messageForm">
+           <input placeholder="Post a reply?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+           <div class="input-group-append">
+             <button class="btn btn-primary" (click)="postComment(comment, message)"> Submit </button>
+           </div>
+         </div>
+         <tree-node-event
+          [event] = event
+          [message]= message
+          [currentUser]= currentUser
+          [messagesArray]= "messagesArray">
+        </tree-node-event>
+      </div>
+      <div class="mt-4 input-group" name="messageForm">
+        <input placeholder="Post a Comment?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="postComment(comment)"> Submit </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

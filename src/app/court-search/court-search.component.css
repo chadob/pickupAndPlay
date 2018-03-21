@@ -1,3 +1,36 @@
 agm-map {
-  height: 300px;
+  height: 400px;
+}
+agm-info-window p:hover {
+  color: #0069d9 !important;
+  cursor: pointer;
+}
+agm-info-window:hover {
+  cursor: pointer;
+}
+a:hover {
+ cursor: pointer;
+}
+a p:hover {
+  color: #0069d9 !important;
+
+}
+.court-container {
+  max-width: 200px;
+}
+.address-container {
+  max-width: 500px;
+  padding-left: 20px;
+}
+@media (min-width: 500px) {
+  .address-container {
+    max-width: 500px;
+    padding-left: 90px;
+  }
+}
+.form-control {
+  height: 38px;
+}
+.input-group {
+  max-width: 500px;
 }

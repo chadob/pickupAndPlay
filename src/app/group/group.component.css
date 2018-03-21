@@ -1,0 +1,15 @@
+agm-map {
+  height: 400px;
+}
+a:hover {
+ cursor:pointer;
+}
+.description {
+  max-width: 300px;
+}
+.members {
+  max-width: 500px;
+}
+.message-board {
+
+}

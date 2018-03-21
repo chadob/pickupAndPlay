@@ -1,47 +1,61 @@
+<navbar></navbar>
 <div>
-  <navbar></navbar>
-  <h1> {{group.name}}</h1>
-
-  <div>
-    <p>Members:</p>
-    <div *ngFor="let member of membersArray" class="search-result" >
-      {{member.username}}{{member.picture}}
+  <div class="container pt-0 px-4 mw-25 py-5 rounded-bottom border-bottom">
+    <h1 class=" pb-2 text-center"> {{group.name}}</h1>
+    <div class="members mx-auto">
+      <h5 class="mt-2"> Member's Status: </h5>
+      <div class="pl-2 mb-2">
+        <span class="font-weight-bold">Members: </span>
+        <br>
+        <span class="pl-2" *ngFor="let member of membersArray">{{member.username}} </span>
+      </div>
+      <div class="pl-2 mb-2">
+        <span class="font-weight-bold">Invited: </span>
+        <br>
+        <span class="pl-2" *ngFor="let member of invitedArray"> {{member.username}}</span>
+      </div>
     </div>
-  </div>
-  <div>
-    <p>Invited:</p>
-    <div *ngFor="let member of invitedArray" class="search-result" >
-      {{member.username}}{{member.picture}}
-    </div>
-  </div>
-  <input #memberSearch type="text" (keyup)="search(memberSearch.value)" class="form-control" placeholder="Members"/>
-  <br>
-  <span *ngFor="let name of userList" (click)="addMember(name)">
-  +  {{name}}
-  </span>
-  <span> {{addMemberError}} </span>
 
-
-  <div>
-    <h4> Upcoming events </h4>
-    <div *ngFor="let event of eventsArray"
-         (click)="relocateEvent('event', event.court, event.event)" class="search-result" >
-      {{event.sender}} has created {{event.event}} at {{event.court}} on {{event.date}}.
+    <div class="members mx-auto mt-2">
+      <h5 class=""> Add Members? </h5>
+      <input #memberSearch type="text" autocomplete="off" (keyup)="search(memberSearch.value)" class="form-control" placeholder="Name"/>
+      <a *ngFor="let name of userList" (click)="addMember(name)">
+        <p class="text-primary"> + {{name}} </p>
+      </a>
+      <span class="text-danger"> {{addMemberError}} </span>
     </div>
   </div>
 
-  <div>
-    <button (click)="relocate('createeventgroup', group.name)"> Start a event </button>
+  <div class="container py-5 mx-auto">
+    <h3 class="pt-3 text-center"> Upcoming Events </h3>
+    <p class="text-center">
+      <a class="text-primary" (click)="relocate('createeventcourt', court.name)"> Create an Event? </a>
+    </p>
+    <div class="w-100 mt-2 mb-4 col-xs-12 col-sm-6 col-md-4 d-inline-block text-center rounded-bottom" *ngFor="let event of eventsArray; index as i">
+      <div class="border rounded w-100 h-100 bg-white">
+        <a class="" (click)="relocateEvent('event', court.name, event.name)">
+          <h5 class="py-3 bg-primary rounded-bottom text-white font-weight-bold"> {{event.name}} </h5>
+          <p> Court: {{event.court}} </p>
+          <p> Date: {{event.date}} </p>
+          <p> Creator: {{event.creator}} </p>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <div *ngFor="let message of messagesArray" class="search-result" >
-       {{message.poster}}: {{message.message}}
-       <span (click)="revealForm(message)"> Reply </span>
-       <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
-         <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
-         <button (click)="postComment(comment, message)"> Submit </button>
-       </form>
+  <div class="container rounded-top border-top py-5">
+    <h3 class="pt-3 text-center"> Message Board </h3>
+    <div>
+      <div *ngFor="let message of messagesArray" class="ml-1" >
+        <span class="font-weight-bold">{{message.poster}}: </span>
+        <span> {{message.message}} </span>
+        <a class="text-primary" (click)="revealForm(message)"> Reply </a>
+        <div class="ml-2 input-group" *ngIf="message.replyClicked" name="messageForm">
+          <input placeholder="Post a reply?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+          <div class="input-group-append">
+            <button class="btn btn-primary" (click)="postComment(comment, message)"> Submit </button>
+          </div>
+        </div>
        <tree-node-group
         [group] = group
         [message]= message
@@ -49,9 +63,11 @@
         [messagesArray]= "messagesArray">
       </tree-node-group>
     </div>
-    <form name="messageForm" method="post" #formCtrl="ngForm">
-      <textarea placeholder="Post a message?" #comment name ="postComment" required></textarea>
-      <button (click)="postComment(comment)"> Submit </button>
-    </form>
+    <div class="mt-4 input-group" name="messageForm">
+      <input placeholder="Post a Comment?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+      <div class="input-group-append">
+        <button class="btn btn-primary" (click)="postComment(comment)"> Submit </button>
+      </div>
+    </div>
   </div>
 </div>

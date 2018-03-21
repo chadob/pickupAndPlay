@@ -5,12 +5,16 @@ import { GetService } from '../server-service/get.service';
   selector: 'tree-node-group',
   template: `
   <div *ngFor="let message of message.replies">
-    {{message.poster}}: {{message.message}}
-    <span (click)="revealForm(message)"> Reply </span>
-    <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
-      <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
-      <button (click)="postComment(comment, message, group.name)"> Submit </button>
-    </form>
+    -
+    <span class="font-weight-bold">{{message.poster}}: </span>
+    <span> {{message.message}} </span>
+    <a class="text-primary" (click)="revealForm(message)"> Reply </a>
+    <div class="ml-2 input-group" *ngIf="message.replyClicked" name="messageForm">
+      <input placeholder="Post a reply?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+      <div class="input-group-append">
+        <button class="btn btn-primary" (click)="postComment(comment, message)"> Submit </button>
+      </div>
+    </div>
     <tree-node-group
       [group] = group
       [currentUser]= currentUser
@@ -18,7 +22,8 @@ import { GetService } from '../server-service/get.service';
       [messagesArray]= messagesArray>
     </tree-node-group>
   </div>
-`
+`,
+styles: ['a:hover { cursor:pointer; }']
 })
 export class TreeNodeGroupComponent implements OnInit{
   pushToComment;

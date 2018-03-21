@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -7,8 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './your-page.component.html',
   styleUrls: ['./your-page.component.css']
 })
-export class YourPageComponent {
+export class YourPageComponent  implements OnInit {
   data;
+  currentUser
   constructor() { }
-
+  ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 }

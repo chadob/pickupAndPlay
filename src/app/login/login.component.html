@@ -1,10 +1,12 @@
 <div>
-  <h1> Sign In </h1>
-  <form name="userform" method="post" #formCtrl="ngForm">
-    <input type="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" name="email" required/>
-    <input type="password" class="form-control" [(ngModel)]="user.password" placeholder="Password" name="password" required/>
-    <button type="buton" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">>Submit</button>
+  <h1 class="mt-5 pt-4 pb-2 text-center"> Pick Up And Play </h1>
+  <h2 class="mt-3 pb-4 text-center"> Sign In </h2>
+  <p *ngIf="loginError" class="text-danger text-center"> Your username or password are incorrect. </p>
+  <form class="mt-4 mx-auto" name="userform" method="post" #formCtrl="ngForm">
+    <input type="email" class="form-control mt-2" placeholder="Email" [(ngModel)]="user.email" name="email" required/>
+    <input type="password" class="form-control mt-2" [(ngModel)]="user.password" placeholder="Password" name="password" required/>
+    <button type="buton" class="mt-2 btn btn-primary" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Submit</button>
+    <a class="float-right mt-3" routerLink="/createaccount" routerLinkActive="active"> Don't have an account? Create one here! </a>
   </form>
   <span>{{message}}</span>
-  <a routerLink="/createaccount" routerLinkActive="active"> Don't have an account? Create one here! </a>
 </div>

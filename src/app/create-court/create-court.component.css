@@ -1,3 +1,13 @@
 agm-map {
-  height: 300px;
+  height: 400px;
+}
+a:hover {
+ cursor:pointer;
+}
+form {
+  max-width: 500px;
+}
+.address-container {
+  max-width: 500px;
+  padding-left: 20px;
 }

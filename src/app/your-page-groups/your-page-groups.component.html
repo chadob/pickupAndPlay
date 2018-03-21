@@ -1,13 +1,16 @@
-<div id="groups-component">
-  <h4>Your groups</h4>
+<div class="border-bottom pt-3 pb-5" id="groups-component">
+  <h3 class="py-2 text-center mb-5">Your Groups</h3>
   <div>
     <div *ngFor="let invite of invitesArray"
          (click)="joinGroup(invite.name)" class="search-result" >
       {{invite.sender}} has invited you to {{invite.name}}.
     </div>
-    <div *ngFor="let myGroup of groupsArray"
-         (click)="relocate('group', myGroup.name)" class="search-result" >
-      {{myGroup.name}}
+    <div class="container text-center">
+      <div class="mx-3 d-inline-block" *ngFor="let myGroup of groupsArray">
+        <a class="mx-auto"  (click)="relocate('group', myGroup.name)">
+          <button class="btn btn-primary">{{myGroup.name}} </button>
+        </a>
+      </div>
     </div>
   </div>
 </div>

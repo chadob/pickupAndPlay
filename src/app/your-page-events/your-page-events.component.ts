@@ -59,10 +59,24 @@ export class YourPageEventsComponent implements OnInit {
           //   removeEvent.unsubscribe();
           // });
         } else {
-          this.eventsArray.push({court: this.events[event].court, name: event});
+          this.eventsArray.push({date: this.events[event].date, creator: this.events[event].sender, court: this.events[event].court, name: event});
         }
       }
     }
+    this.sortEvents(this.eventsArray);
+  }
+  sortEvents(eventArray) {
+    eventArray.sort(function(a,b) {
+      a = new Date([a.date.split('/')[2], a.date.split('/')[0], a.date.split('/')[1]].join('-'));
+      b = new Date([b.date.split('/')[2], b.date.split('/')[0], b.date.split('/')[1]].join('-'));
+      if (a < b) {
+        return -1;
+      }
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    });
   }
   relocateEvent(category, court, event) {
     this.goToPageClass.goToEvent(category, court, event);

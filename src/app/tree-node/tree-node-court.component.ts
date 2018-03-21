@@ -4,21 +4,27 @@ import { GetService } from '../server-service/get.service';
 @Component({
   selector: 'tree-node-court',
   template: `
-  <div *ngFor="let message of message.replies">
-    {{message.poster}}: {{message.message}}
-    <span (click)="revealForm(message)"> Reply </span>
-    <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
-      <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
-      <button (click)="postComment(comment, message, court.name)"> Submit </button>
-    </form>
+  <div class="ml-2" *ngFor="let message of message.replies">
+    -
+    <span class="font-weight-bold">{{message.poster}}: </span>
+    <span> {{message.message}} </span>
+    <a class="text-primary" (click)="revealForm(message)"> Reply </a>
+    <div class="ml-2 input-group" *ngIf="message.replyClicked" name="messageForm">
+      <input placeholder="Post a reply?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+      <div class="input-group-append">
+        <button class="btn btn-primary" (click)="postComment(comment, message)"> Submit </button>
+      </div>
+    </div>
     <tree-node-court
       [court] = court
       [currentUser]= currentUser
       [message]= message
+      [margin] = margin
       [messagesArray]= messagesArray>
     </tree-node-court>
   </div>
-`
+`,
+styles: ['a:hover { cursor:pointer; }']
 })
 export class TreeNodeCourtComponent implements OnInit{
   pushToComment;
@@ -29,9 +35,15 @@ export class TreeNodeCourtComponent implements OnInit{
     // console.log(this.currentUser);
     // console.log(this.message);
     // console.log(this.messagesArray);
+    this.margin = this.margin + 2;
+    console.log(this.margin);
   }
   revealForm(message) {
-    message.replyClicked = true;
+    if (message.replyClicked === true) {
+      message.replyClicked = false;
+    } else {
+      message.replyClicked = true;
+    }
   }
   postComment(formMessage, repliedTo) {
     var commentToPost = {ancestor: null, poster: this.currentUser.username, message: formMessage.value, date: "asdf"};
@@ -54,5 +66,6 @@ export class TreeNodeCourtComponent implements OnInit{
   @Input() message;
   @Input() court;
   @Input() currentUser;
+  @Input() margin;
   @Input() messagesArray;
 }

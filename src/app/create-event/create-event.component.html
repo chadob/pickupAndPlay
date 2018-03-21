@@ -1,43 +1,47 @@
 <navbar></navbar>
 <div>
-  <h1>Create Event</h1>
   <agm-map [latitude]="event.location.coords.lat" [longitude]="event.location.coords.lng">
     <agm-marker [latitude]="event.location.coords.lat" [longitude]="event.location.coords.lng">
       <agm-info-window>
-        <p> {{event.court}} </p>
+        <p class="text-center"> {{event.court}} </p>
         <p> {{event.location.address}} </p>
       </agm-info-window>
     </agm-marker>
   </agm-map>
 
-  <form name="eventform" method="post" #formCtrl="ngForm">
-    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="event.name" name="name" required/>
-    <br>
-    <span *ngIf="this.groupEvent"> Group: {{this.event.group}}</span>
-    <br *ngIf="this.groupEvent">
-    <input type="date" (blur)="checkDateEvent()" class="form-control" placeholder="Date" [(ngModel)]="event.date" name="date" required/>
-    <span> {{dateError}} </span>
-    <br>
-    <input type="text" (keyup)="search(event.court)" class="form-control" [(ngModel)]="event.court" placeholder="Courts" name="court" required/>
-    <br>
-    <span *ngFor="let name of courtList" (click)="chooseCourt(name)">
-      + {{name}}
-    </span>
-    <br>
-    <input type="address" class="form-control" placeholder="Address" [(ngModel)]="event.location.address" name="address" required/>
-    <br>
-    <input type="radio" class="form-control" [(ngModel)]="event.private" value="true" name="private" required/> Private
-    <input type="radio" class="form-control" [(ngModel)]="event.private" value="false" name="public" required/> Public
-    <br>
-    <input type="textarea" class="form-control" placeholder="Description" [(ngModel)]="event.description" name="description" required/>
-    <br>
-    <span> Add Members </span>
-    <input #memberSearch type="text" (keyup)="searchUsers(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Invited" name="invited"/>
-    <br>
-    <span *ngFor="let name of userList" (click)="addMembers(name)">
-      + {{name}}
-    </span>
-    <br>
-    <button type="buton" (click)="onSubmit()" [disabled]="formCtrl.form.invalid">Create</button>
+  <h1 class="pt-2 pb-2 text-center">Create Event</h1>
+  <h6 class="mt-1 pl-1 text-center" *ngIf="this.groupEvent"> Group: {{this.event.group}}</h6>
+
+  <form class="mx-auto" name="eventform" method="post" #formCtrl="ngForm">
+    <input type="text" class="mt-2 form-control" placeholder="Name" [(ngModel)]="event.name" name="name" required/>
+    <input type="date" (blur)="checkDateEvent()" class="mt-2 form-control" placeholder="Date" [(ngModel)]="event.date" name="date" required/>
+    <span class="pl-1 text-center text-danger"> {{dateError}} </span>
+
+    <input type="text" autocomplete="off" (keyup)="search(event.court)" class="mt-2 form-control" [(ngModel)]="event.court" placeholder="Courts" name="court" required/>
+    <a *ngFor="let name of courtList" (click)="chooseCourt(name)">
+      <p class="text-primary"> + {{name}} </p>
+    </a>
+
+    <input type="address" class="mt-2 form-control" placeholder="Address" [(ngModel)]="event.location.address" name="address" required/>
+
+    <div class="mt-2">
+      <h6 class="pl-1"> Private? </h6>
+      <select [(ngModel)]="event.private" name="private" class="custom-select">
+        <option value="true" name="private" required> Private </option>
+        <option value="false" name="public" required> Public </option>
+      </select>
+    </div>
+
+    <input type="textarea" class="mt-2 form-control" placeholder="Description" [(ngModel)]="event.description" name="description" required/>
+
+    <div class=" mt-2">
+      <h6 class="pl-1"> Add Members? </h6>
+      <input #memberSearch type="text" autocomplete="off" (keyup)="searchUsers(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Invited" name="invited"/>
+      <a *ngFor="let name of userList" (click)="addMembers(name)">
+        <p class="text-primary"> + {{name}} </p>
+      </a>
+    </div>
+
+    <button type="buton" class="mt-2 btn btn-primary" (click)="onSubmit()" [disabled]="formCtrl.form.invalid">Create</button>
   </form>
 </div>

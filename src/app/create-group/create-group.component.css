@@ -1,0 +1,17 @@
+agm-map {
+  height: 400px;
+}
+a:hover {
+ cursor:pointer;
+}
+a p:hover {
+  color: #0069d9 !important;
+
+}
+form {
+  max-width: 500px;
+}
+.address-container {
+  max-width: 500px;
+  padding-left: 20px;
+}

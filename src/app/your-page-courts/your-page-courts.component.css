@@ -1,0 +1,16 @@
+a:hover {
+ cursor:pointer;
+}
+a span:hover {
+  color: #0069d9 !important;
+
+}
+h6:hover {
+  color: #0069d9 !important;
+}
+h5:hover {
+  color: #0069d9 !important;
+}
+h5 {
+  text-decoration: underline;
+}

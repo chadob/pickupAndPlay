@@ -129,9 +129,9 @@ export class CreateEventComponent implements OnInit {
         this.getService.postData('groups/' + this.event.group + '/events/' + this.event.name, {sender: this.currentUser.username, court: this.event.court, event: this.event.name, date: this.event.date}).subscribe(value => {
         });
       }
-      this.getService.postData('userData/' + this.currentUser.uid + '/myEvents/' + this.event.name, {court: this.event.court, event: this.event.name, date: this.event.date, status: "going"}).subscribe(value => {
+      this.getService.postData('userData/' + this.currentUser.uid + '/myEvents/' + this.event.name, {sender: this.currentUser.username, court: this.event.court, event: this.event.name, date: this.event.date, status: "going"}).subscribe(value => {
       });
-      this.getService.postData('courts/' + this.event.court + '/events/' + this.event.name, {date: this.event.date, name: this.event.name}).subscribe(value => {
+      this.getService.postData('courts/' + this.event.court + '/events/' + this.event.name, {creator: this.currentUser.username, private: this.event.private, date: this.event.date, name: this.event.name}).subscribe(value => {
         this.router.navigate(['event', this.event.court, this.event.name]);
       });
     });

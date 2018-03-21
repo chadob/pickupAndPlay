@@ -1,11 +1,17 @@
-<div>
-  <ul>
-    <li (click)="relocate('account', currentUser.username)"> Hi {{currentUser.username}} </li>
-    <li (click)="relocate('messagecenter', currentUser.username)"> Messages </li>
-    <li (click)="relocateSingle('courtsearch')"> Court Search </li>
-    <li (click)="relocateSingle('createcourt')"> Add Court </li>
-    <li (click)="relocateSingle('creategroup')"> Create Group </li>
-    <li (click)="relocateSingle('createevent')"> Create Event </li>
-    <li (click)="relocateSingle('')">Logout</li>
-  </ul>
-</div>
+<nav class="navbar clearfix navbar-expand-lg navbar-expand-md navbar-expand-sm mx-auto navbar-dark bg-dark text-center">
+  <div class="d-xs-none mx-auto ">
+    <button class="navbar-toggler navbar-toggler-center mx-auto" (click)="isNavbarCollapsed = !isNavbarCollapsed" type="button" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div [ngbCollapse]="isNavbarCollapsed" class="w-100 collapse navbar-toggleable-xs mx-auto" id="exCollapsingNavbar2">
+    <ul class="w-100 navbar-nav mx-auto mt-2 mt-lg-0 ">
+      <li class="nav-item"> <a class="nav-link" (click)="relocate('account', currentUser.username)"> Home </a></li>
+      <li class="nav-item"> <a class="nav-link" (click)="relocateSingle('courtsearch')"> Court Search </a></li>
+      <li class="nav-item"> <a class="nav-link" (click)="relocateSingle('createcourt')"> Add Court </a></li>
+      <li class="nav-item"> <a class="nav-link" (click)="relocateSingle('creategroup')"> Create Group </a></li>
+      <li class="nav-item"> <a class="nav-link" (click)="relocateSingle('createevent')"> Create Event </a></li>
+      <li class="nav-item"> <a class="nav-link" (click)="relocateSingle('')">Logout</a></li>
+    </ul>
+  </div>
+</nav>

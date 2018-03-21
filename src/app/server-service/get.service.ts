@@ -12,7 +12,6 @@ export class GetService {
 
   getAllData (route): Observable<any> {
     var data = this.database.object(route).valueChanges();
-    console.log(data);
     return data;
   }
   pushData (route, data): Observable<any> {

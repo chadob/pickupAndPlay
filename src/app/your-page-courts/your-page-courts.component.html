@@ -1,13 +1,17 @@
-<div id="court-component">
-  <h4>Activity at Favorite Courts</h4>
+<div class="py-3" id="court-component">
+  <h3 class="py-2 text-center ">Activity at Favorite Courts</h3>
   <div>
     <ng-container *ngIf="favoriteCourtsArray">
-      <div *ngFor="let favoriteCourt of favoriteCourtsArray"
-           (click)="relocate('court', favoriteCourt.name)" class="search-result" >
-        {{favoriteCourt.name}}:
-        <div *ngFor="let event of favoriteCourt.events"
-             (click)="relocateEvent('event', favoriteCourt.name, event)" class="search-result" >
-          {{event}}
+      <div class="container mx-auto text-center mt-1" *ngFor="let favoriteCourt of favoriteCourtsArray">
+        <a (click)="relocate('court', favoriteCourt.name)">
+          <h5 class="text-primary"> {{favoriteCourt.name}}: </h5>
+        </a>
+        <div class="container text-center">
+          <div class="mx-3 d-inline-block" *ngFor="let event of favoriteCourt.events">
+            <a class="mx-auto" (click)="relocateEvent('event', favoriteCourt.name, event)">
+              <span class="text-primary mb-0"> {{event}} </span>
+            </a>
+          </div>
         </div>
       </div>
     </ng-container>

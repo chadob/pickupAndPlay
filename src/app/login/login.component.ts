@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   courtsArray = [];
   message = "";
   currentUser;
-
+  loginError = false;
   constructor(private goToPageClass: GoToPage, private authService: AuthService, private router: Router, private getService: GetService) {}
   ngOnInit() {
   }
@@ -33,7 +33,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['account', this.currentUser.username]);
       });
     })
-    .catch((err) => console.log('error: ' + err));
+    .catch((err) => {
+      this.loginError = true;
+      console.log('error: ' + err);
+    });
   }
   fillArray(array, category) {
     for (var person in category) {

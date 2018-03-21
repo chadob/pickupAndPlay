@@ -12,7 +12,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from './../environments/environment';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { GoToPage } from './go-to-page/go-to-page.service';
@@ -73,6 +73,7 @@ import { CourtComponent } from './court/court.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    NgbModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB_l8twMsQhOVqIp8Olss7SHTfNX-K_2zc'
     })

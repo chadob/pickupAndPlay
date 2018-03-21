@@ -1,13 +1,19 @@
-<div id="events-component">
-  <h4>Upcoming events</h4>
+<div class="border-bottom" id="events-component">
+  <h3 class="py-2 text-center">Upcoming Events</h3>
   <div>
     <div *ngFor="let invite of invitesArray">
-      {{invite.sender}} has invited you to {{invite.name}} on {{invite.date}}.
+      {{invite.sender}} has invited you to {{invite.name}} on {{invite.date}} at {{invite.court}}.
       <span *ngFor="let status of statusArray" (click)="respondToEvent(invite.court, invite.name, status, invite.date)"> {{status}} </span>
     </div>
-    <div *ngFor="let myEvent of eventsArray"
-         (click)="relocateEvent('event', myEvent.court, myEvent.name)" class="search-result" >
-      {{myEvent.name}}
+    <div class="w-100 mt-2 mb-4 col-xs-12 col-sm-6 col-md-4 d-inline-block text-center rounded-bottom" *ngFor="let myEvent of eventsArray; index as i">
+      <div class="border rounded w-100 h-100 bg-white">
+        <a class="" (click)="relocateEvent('event', myEvent.court, myEvent.name)">
+          <h5 class="py-3 bg-primary rounded-bottom text-white font-weight-bold"> {{myEvent.name}} </h5>
+          <p> Date: {{myEvent.date}} </p>
+          <p> Court: {{myEvent.court}} </p>
+          <p> Creator: {{myEvent.creator}} </p>
+        </a>
+      </div>
     </div>
   </div>
 </div>

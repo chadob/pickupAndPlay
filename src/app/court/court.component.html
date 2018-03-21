@@ -1,47 +1,73 @@
 <div>
   <navbar></navbar>
-  <h1> {{court.name}}</h1>
   <!--Google Maps -->
   <agm-map [latitude]="latitude" [longitude]="longitude">
     <agm-marker [latitude]="latitude" [longitude]="longitude">
       <agm-info-window>
-        <p> {{court.name}} </p>
+        <p class="text-center"> {{court.name}} </p>
         <p> {{court.location.address}} </p>
       </agm-info-window>
     </agm-marker>
-
   </agm-map>
-  <p *ngIf="courtIsFavorited" (click)="toggleFavoriteStatus()"> Remove Court from favorites? </p>
-  <p *ngIf="!courtIsFavorited" (click)="toggleFavoriteStatus()"> Add Court to favorites? </p>
-  <p>Address: {{court.location.address}}</p>
-  <p>Cost: ${{court.cost}}</p>
-  <p>Location: {{court.location.inside}}</p>
-  <p>Activity Level: {{court.activity}}</p>
-  <p>Description: {{court.description}}</p>
-  <p (click)="relocate('createeventcourt', court.name)"> Create Event </p>
-  <h2> Events at {{court.name}} </h2>
-  <div *ngFor="let event of eventsArray">
-    {{event.name}} Date: {{event.date}}
-  </div>
-  <h2> Message Board </h2>
-  <div>
-    <div *ngFor="let message of messagesArray" class="search-result" >
-       {{message.poster}}: {{message.message}}
-       <span (click)="revealForm(message)"> Reply </span>
-       <form *ngIf="message.replyClicked" name="messageForm" method="post" #formCtrl="ngForm">
-         <textarea placeholder="Post a reply?" #comment name ="postComment" required></textarea>
-         <button (click)="postComment(comment, message)"> Submit </button>
-       </form>
-       <tree-node-court
-        [court] = court
-        [message]= message
-        [currentUser]= currentUser
-        [messagesArray]= "messagesArray">
-      </tree-node-court>
+
+  <div class="text-center container px-4 mw-25 py-5 rounded-bottom border-bottom">
+    <h1 class="pt-2 pb-2 text-center"> {{court.name}}</h1>
+    <div class="description mx-auto">
+      <p class="text-center w-100">
+        <a class="text-primary text-center w-100" *ngIf="courtIsFavorited" (click)="toggleFavoriteStatus()"> Remove Court from favorites? </a>
+        <a class="text-primary text-center w-100" *ngIf="!courtIsFavorited" (click)="toggleFavoriteStatus()"> Add Court to favorites? </a>
+      </p>
+      <h6 class="mb-0 mt-2">Description: </h6> <p class="mb-0">{{court.description}} </p>
+      <h6 class="mb-0 mt-2">Address: </h6> <p class="mb-0">{{court.location.address}} </p>
+      <h6 class="mb-0 mt-2">Cost: </h6> <p class="mb-0"> ${{court.cost}}</p>
+      <h6 class="mb-0 mt-2">Location: </h6> <p class="mb-0"> {{court.location.inside}}</p>
+      <h6 class="mb-0 mt-2">Activity Level: </h6> <p class="mb-0"> {{court.activity}}</p>
     </div>
-    <form name="messageForm" method="post" #formCtrl="ngForm">
-      <textarea placeholder="Post a message?" #comment name ="postComment" required></textarea>
-      <button (click)="postComment(comment)"> Submit </button>
-    </form>
+  </div>
+
+  <div class="container py-5">
+    <h3 class="pt-3 text-center"> Events at {{court.name}} </h3>
+    <p class="text-center">
+      <a class="text-primary" (click)="relocate('createeventcourt', court.name)"> Create an Event? </a>
+    </p>
+    <div class="w-100 mt-2 mb-4 col-xs-12 col-sm-6 col-md-4 d-inline-block text-center rounded-bottom" *ngFor="let event of eventsArray; index as i">
+      <div class="border rounded w-100 h-100 bg-white">
+        <a class="" (click)="relocateEvent('event', court.name, event.name)">
+          <h5 class="py-3 bg-primary rounded-bottom text-white font-weight-bold"> {{event.name}} </h5>
+          <p> Date: {{event.date}} </p>
+          <p> Creator: {{event.creator}} </p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container rounded-top border-top py-5">
+    <h3 class="pt-3 text-center"> Message Board </h3>
+    <div>
+      <div *ngFor="let message of messagesArray" class="ml-1" >
+        <span class="font-weight-bold">{{message.poster}}: </span>
+        <span> {{message.message}} </span>
+        <a class="text-primary" (click)="revealForm(message)"> Reply </a>
+        <div class="ml-2 input-group" *ngIf="message.replyClicked" name="messageForm">
+          <input placeholder="Post a reply?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+          <div class="input-group-append">
+            <button class="btn btn-primary" (click)="postComment(comment, message)"> Submit </button>
+          </div>
+        </div>
+        <tree-node-court
+          [court] = court
+          [message]= message
+          [currentUser]= currentUser
+          [margin] = margin
+          [messagesArray]= "messagesArray">
+        </tree-node-court>
+      </div>
+      <div class="mt-4 input-group" name="messageForm">
+        <input placeholder="Post a Comment?" class="d-inline-block mx-auto form-control" style="width: 400px"  #comment name ="postComment" required/>
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="postComment(comment)"> Submit </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

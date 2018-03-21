@@ -1,18 +1,18 @@
 <navbar></navbar>
 <div>
-  <h1>Create Group</h1>
-  <form name="groupform" method="post" #formCtrl="ngForm">
+  <h1 class="pt-2 pb-2 text-center">Create Group</h1>
+  <form class="mx-auto" name="groupform" method="post" #formCtrl="ngForm">
     <input type="text" class="form-control" placeholder="Name" [(ngModel)]="group.name" name="name" required/>
-    <br>
-    <span> Add Members </span>
-    <input #memberSearch type="text" (keyup)="search(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Members" name="memberSearch"/>
-    <br>
-    <span *ngFor="let name of userList" (click)="addMembers(name)">
-      + {{name}}
-    </span>
-    <br>
-    <input type="textarea" class="form-control" placeholder="Description" [(ngModel)]="group.description" name="description" required/>
-    <br>
-    <button type="buton" (click)="onSubmit()" [disabled]="formCtrl.form.invalid">Create</button>
+
+    <div class="mt-2">
+      <h6 class="pl-1"> Add Members: </h6>
+      <input #memberSearch type="text" autocomplete="off" (keyup)="search(memberSearch.value)" [(ngModel)]="memberSearchValue" class="form-control" placeholder="Members" name="memberSearch"/>
+      <a *ngFor="let name of userList" (click)="addMembers(name)">
+        <p class="text-primary"> + {{name}} </p>
+      </a>
+    </div>
+
+    <input type="textarea" class="mt-2 form-control" placeholder="Description" [(ngModel)]="group.description" name="description" required/>
+    <button type="buton" class="mt-2 btn btn-primary" (click)="onSubmit()" [disabled]="formCtrl.form.invalid">Create</button>
   </form>
 </div>

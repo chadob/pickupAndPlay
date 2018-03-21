@@ -193,8 +193,11 @@ export class EventComponent implements OnInit {
     }
   }
   revealForm(message) {
-    console.log('clickers');
-    message.replyClicked = true;
+    if (message.replyClicked === true) {
+      message.replyClicked = false;
+    } else {
+      message.replyClicked = true;
+    }
   }
   relocate(category, detail) {
     this.goToPageClass.goToPage(category, detail);

@@ -66,7 +66,7 @@ export class GroupComponent implements OnInit {
             removeEvent.unsubscribe();
           });
         } else {
-          this.eventsArray.push({court: this.group.events[event].court, name: event});
+          this.eventsArray.push({creator: this.group.events[event].sender, court: this.group.events[event].court, date: this.group.events[event].date, name: event});
         }
       }
     }
