@@ -1,1 +1,1 @@
-ng serve
+node app.js
