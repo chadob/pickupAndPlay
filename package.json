@@ -32,6 +32,7 @@
     "@angular/router": "5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^1.0.1",
     "angularfire2": "^5.0.0-rc.3",
+    "bootstrap-css-only": "4.0.0",
     "core-js": "^2.4.1",
     "express": "^4.16.3",
     "firebase": "^4.8.0",
