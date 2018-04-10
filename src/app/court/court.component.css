@@ -8,5 +8,12 @@ a:hover {
   max-width: 300px;
 }
 .message-board {
-  
+
+}
+
+@media (max-width: 522px) {
+  .input-group-append button {
+    margin-top: 5px;
+    border-radius: .25rem;
+  }
 }

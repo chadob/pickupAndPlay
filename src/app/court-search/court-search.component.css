@@ -22,9 +22,11 @@ a p:hover {
   max-width: 500px;
   padding-left: 20px;
 }
-.input-group-append button {
-  margin-top: 5px;
-  border-radius: .25rem;
+@media (max-width: 522px) {
+  .input-group-append button {
+    margin-top: 5px;
+    border-radius: .25rem;
+  }
 }
 @media (min-width: 500px) {
   .address-container {

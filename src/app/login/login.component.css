@@ -1,3 +1,6 @@
 form {
   max-width: 500px;
 }
+input[type="date"] {
+	min-height: 2.5rem;
+}
