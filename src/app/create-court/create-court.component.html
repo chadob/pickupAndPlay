@@ -1,5 +1,4 @@
 <navbar></navbar>
-<div>
   <agm-map [latitude]="latitude" [longitude]="longitude">
     <agm-marker [latitude]="latitude" [longitude]="longitude">
       <agm-info-window>
@@ -9,6 +8,7 @@
     </agm-marker>
   </agm-map>
 
+<div class="container py-2">
   <h1 class="pt-2 pb-2 text-center">Add Court</h1>
   <form class="mx-auto" name="userform" method="post" #formCtrl="ngForm">
     <input type="text" class=" mt-2 form-control" placeholder="Name" [(ngModel)]="court.name" name="name" required/>

@@ -16,3 +16,7 @@ a p:hover {
 .message-board {
 
 }
+.input-group-append button {
+  margin-top: 5px;
+  border-radius: .25rem;
+}

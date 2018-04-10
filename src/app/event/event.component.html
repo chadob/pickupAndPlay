@@ -20,7 +20,7 @@
     <h6 class="mb-0 mt-2">Description: </h6> <p>{{event.description}}</p>
   </div>
 
-  <div class="container">
+  <div class="container py-5">
     <div class="rsvp mx-auto">
       <h3 class="text-center">Rsvp</h3>
       <div *ngIf="userIsInvited" class="mt-2">
@@ -62,7 +62,7 @@
   </div>
 
   <div class="container rounded-top border-top py-5">
-    <h3 class="pt-3 text-center"> Message Board </h3>
+    <h3 class=" text-center"> Message Board </h3>
     <div>
       <div *ngFor="let message of messagesArray" class="ml-1" >
          <span class="font-weight-bold">{{message.poster}}: </span>
