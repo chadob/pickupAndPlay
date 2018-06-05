@@ -22,35 +22,21 @@ export class YourPageCourtsComponent implements OnInit {
     this.favoriteCourtsArray = [];
     this.getFavoriteCourts = this.getService.getAllData('userData/' + this.currentUser.uid + '/favoriteCourts').subscribe(value => {
       this.getFavoriteCourts.unsubscribe();
-      console.log(value);
       for (var court in value) {
-        console.log(court);
         if (value.hasOwnProperty(court)) {
           this.favoriteCourtsObject[court] = {name: court, events: []};
-          console.log(this.favoriteCourtsObject[court]);
-          console.log(this.favoriteCourtsObject);
-
           this.getService.getAllData('courts/' + court + '/events').subscribe(events => {
-            console.log(events);
-            console.log(this.favoriteCourtsObject);
-            console.log(events);
             var currentCourt;
             for (var event in events) {
-              console.log(event);
               if (events.hasOwnProperty(event)) {
-                currentCourt = events[event].court
-                console.log(this.favoriteCourtsObject[currentCourt]);
+                currentCourt = events[event].court;
                 this.favoriteCourtsObject[currentCourt].events.push(event);
               }
             }
-            console.log(this.favoriteCourtsObject);
-            console.log(currentCourt);
             this.favoriteCourtsArray.push(this.favoriteCourtsObject[currentCourt]);
-            console.log(this.favoriteCourtsArray);
           });
         }
       }
-      console.log(this.favoriteCourtsObject);
     });
 
   }

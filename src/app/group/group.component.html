@@ -33,7 +33,7 @@
     </p>
     <div class="w-100 mt-2 mb-4 col-xs-12 col-sm-6 col-md-4 d-inline-block text-center rounded-bottom" *ngFor="let event of eventsArray; index as i">
       <div class="border rounded w-100 h-100 bg-white">
-        <a class="" (click)="relocateEvent('event', court.name, event.name)">
+        <a class="" (click)="relocateEvent('event', event.court, event.name)">
           <h5 class="py-3 bg-primary rounded-bottom text-white font-weight-bold"> {{event.name}} </h5>
           <p> Court: {{event.court}} </p>
           <p> Date: {{event.date}} </p>

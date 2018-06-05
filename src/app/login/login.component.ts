@@ -26,6 +26,25 @@ export class LoginComponent implements OnInit {
   signInWithEmail() {
     this.authService.signInRegular(this.user.email, this.user.password)
     .then((res) => {
+      console.log(res);
+      this.getService.getAllData('userData/' + res.uid).subscribe(value => {
+        console.log(value);
+        localStorage.setItem('currentUser', JSON.stringify({uid: res.uid, username: value.username, password: this.user.password, favoriteCourts: value.favoriteCourts}));
+        this.currentUser = JSON.parse(localStorage.currentUser);
+        this.router.navigate(['account', this.currentUser.username]);
+      });
+    })
+    .catch((err) => {
+      this.loginError = true;
+      console.log('error: ' + err);
+    });
+  }
+  signInAsTester() {
+    this.user.email = "test@gmail.com";
+    this.user.password = "testing";
+    this.authService.signInRegular(this.user.email, this.user.password)
+    .then((res) => {
+      console.log(res);
       this.getService.getAllData('userData/' + res.uid).subscribe(value => {
         console.log(value);
         localStorage.setItem('currentUser', JSON.stringify({uid: res.uid, username: value.username, password: this.user.password, favoriteCourts: value.favoriteCourts}));

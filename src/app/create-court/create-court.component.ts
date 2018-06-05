@@ -50,7 +50,7 @@ export class CreateCourtComponent implements OnInit {
     });
   }
   getLatandLng(query) {
-    this.getService.getLatAndLng("https:maps.googleapis.com/maps/api/geocode/json?address=", this.key, query).subscribe(results=> {
+    this.getService.getLatAndLng("https://maps.googleapis.com/maps/api/geocode/json?address=", this.key, query).subscribe(results=> {
       console.log(results);
       this.addressArray = results.results;
       console.log(this.addressArray);

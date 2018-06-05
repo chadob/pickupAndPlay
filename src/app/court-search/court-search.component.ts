@@ -28,6 +28,7 @@ export class CourtSearchComponent implements OnInit {
 
   ngOnInit() {
     this.fillCourtsObject();
+    console.log(this.courtsArray);
   }
   fillCourtsObject() {
     this.getService.getAllData('courts').subscribe(courts => {
@@ -41,7 +42,7 @@ export class CourtSearchComponent implements OnInit {
   }
   getLatandLng(query) {
 
-    var getCoordsRequest = this.getService.getLatAndLng("https:maps.googleapis.com/maps/api/geocode/json?address=", this.key, query).subscribe(results=> {
+    var getCoordsRequest = this.getService.getLatAndLng("https://maps.googleapis.com/maps/api/geocode/json?address=", this.key, query).subscribe(results=> {
       console.log(results);
       this.addressArray = results.results;
       console.log(this.addressArray);

@@ -5,7 +5,8 @@
   <form class="mt-4 mx-auto" name="userform" method="post" #formCtrl="ngForm">
     <input type="email" class="form-control mt-2" placeholder="Email" [(ngModel)]="user.email" name="email" required/>
     <input type="password" class="form-control mt-2" [(ngModel)]="user.password" placeholder="Password" name="password" required/>
-    <button type="buton" class="mt-2 btn btn-primary" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Submit</button>
+    <button type="button" class="mt-2 btn btn-primary" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">Submit</button>
+    <button type="button" class="mt-2 btn btn-primary" (click)="signInAsTester()">Login as tester</button>
     <a class="float-right mt-3" routerLink="/createaccount" routerLinkActive="active"> Don't have an account? Create one here! </a>
   </form>
   <span>{{message}}</span>
